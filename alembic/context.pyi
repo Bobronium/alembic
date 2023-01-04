@@ -22,6 +22,7 @@ if TYPE_CHECKING:
 
     from .config import Config
     from .operations import MigrateOperation
+    from .operations.ops import MigrationScript
     from .runtime.migration import _ProxyTransaction
     from .runtime.migration import MigrationContext
     from .script import ScriptDirectory
@@ -91,7 +92,7 @@ def configure(
     include_schemas: bool = False,
     process_revision_directives: Optional[
         Callable[
-            [MigrationContext, Tuple[str, str], List[MigrateOperation]], None
+            [MigrationContext, Union[Tuple[str], Tuple[str, str]], List[MigrationScript]], None
         ]
     ] = None,
     compare_type: bool = False,
